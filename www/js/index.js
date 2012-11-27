@@ -27,6 +27,7 @@ var app = {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
+        accel.startWatch();
     },
     report: function(id) {
         // Report the event in the console
@@ -38,5 +39,35 @@ var app = {
         document.querySelector('#' + id + ' .pending').className += ' hide';
         var completeElem = document.querySelector('#' + id + ' .complete');
         completeElem.className = completeElem.className.split('hide').join('');
+        
     }
 };
+
+
+var accel = function(){
+    var watchID;
+    //wait for PhoneGap to load
+    this.startWatch = function(){
+        var options = { frequency: 3000 };
+        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    }
+    // Stop watching the acceleration
+    this.stopWatch = function() {
+        if (watchID) {
+            navigator.accelerometer.clearWatch(watchID);
+            watchID = null;
+        }
+    }
+    // Success
+    function onSuccess(acceleration) {
+        var element = document.getElementById('accelerometer');
+        element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
+                            'Acceleration Y: ' + acceleration.y + '<br />' +
+                            'Acceleration Z: ' + acceleration.z + '<br />' +
+                            'Timestamp: '      + acceleration.timestamp + '<br />';
+    }
+     // Error
+    function onError() {
+        alert('onError!');
+    }
+}

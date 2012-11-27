@@ -1,84 +1,49 @@
-
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
     <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="PhoneGap.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+                <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <title>Hello World</title>
     </head>
     <body>
-         
-        <div data-role="page">
-            <div data-role="footer" class="ui-bar">
-                <a href="#accelPage" data-role="button" data-icon="arrow-u">Map Page</a>
-                <a href="#cameraPage" data-role="button" data-icon="plus">Camera Page</a>
-            </div>
-        </div>
-        
-        <div id="accelPage" data-role="page">
-            <div data-theme="a" data-role="header">
-                <h1>
-                    Accelerometer
-                </h1>
-            </div>
+        <div class="app">
+            <h1>PhoneGap</h1>
+            <div id="deviceready">
+                <p class="status pending blink">Connecting to Device</p>
+                <p class="status complete blink hide">Device is Ready, are we going?</p>
+                <p id="accelerometer">
+                    <div id="accel_x">no data x</div>
+                    <div id="accel_y">no data y</div>
+                    <div id="accel_z">no data z</div>
 
-            <section id="main">
-                
-              <label for="toggle-all">Data:</label>
-              <ul id="accel out">
-                  <li class="accelData" id="accel_x">no data yet x</li>
-                  <li class="accelData" id="accel_y">no data yet y</li>
-                  <li class="accelData" id="accel_z">no data yet z</li>
-                  <li class="accelData" id="accel_t">no data yet t</li>
-              </ul>
-            </section>
-
-            <footer>
-              <a id="clear-completed">Clear completed</a>
-              <div id="todo-count"></div>
-            </footer>
-            
-        </div>
-        
-        <div id="cameraPage" data-role="page">
-            <div data-theme="a" data-role="header">
-                <h1>
-                    Camera Page
-                </h1>
+                </p>
             </div>
-            
         </div>
-        
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-        <script src="test/vendor/json2.js"></script>
-        <!--<script src="test/vendor/jquery-1.7.1.js"></script>-->
-        <script src="test/vendor/underscore.js"></script>
-        <script src="backbone.js"></script>
-        <script src="backbone-localstorage.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-        
-    <script>
-        
-        //first we want to wait for PhoneGap to load
-        document.addEventListener("deviceready", loaded, false)
-        //PhoneGap is loaded
-        function loaded(){
-            $(".accelData").html("loaded");
-            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-        }
-        //Get the current Acceleration data if Successful
-        function onSuccess(acceleration){
-            $("#accel_x").html("x:" + acceleration.x);
-            $("#accel_y").html("y:" + acceleration.y);
-            $("#accel_z").html("z:" + acceleration.z);
-            $("#accel_t").html("t:" + acceleration.timestamp);
-        }
-        // alert if there is an error
-        function onError(){
-            $(".accelData").html("error");
-        }
-    </script>
-          
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
 </html>
