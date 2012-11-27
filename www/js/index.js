@@ -45,7 +45,7 @@ var app = {
 };
 
 var acceler = new Acceler();
-var Acceler = function(){
+function Acceler(){
     var watchID;
     //wait for PhoneGap to load
     this.startWatch = function(){
