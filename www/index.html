@@ -9,26 +9,26 @@
          
         <div data-role="page">
             <div data-role="footer" class="ui-bar">
-                <a href="#currentTaskPage" data-role="button" data-icon="arrow-u">Current Task</a>
-                <a href="#editTasksPage" data-role="button" data-icon="plus">Edit Task List</a>
+                <a href="#accelPage" data-role="button" data-icon="arrow-u">Map Page</a>
+                <a href="#cameraPage" data-role="button" data-icon="plus">Camera Page</a>
             </div>
         </div>
         
-        <div id="editTasksPage" data-role="page">
+        <div id="accelPage" data-role="page">
             <div data-theme="a" data-role="header">
                 <h1>
-                    Add/Edit Tasks
+                    Accelerometer
                 </h1>
             </div>
-            <header>
-              <input id="new-todo" type="text" placeholder="What needs to be done?">
-            </header>
 
             <section id="main">
-              <input id="toggle-all" type="checkbox">
-              <label for="toggle-all">Mark all as complete</label>
-              <ul id="todo-list">
-                  
+                
+              <label for="toggle-all">Data:</label>
+              <ul id="accel out">
+                  <li class="accelData" id="accel_x">no data yet x</li>
+                  <li class="accelData" id="accel_y">no data yet y</li>
+                  <li class="accelData" id="accel_z">no data yet z</li>
+                  <li class="accelData" id="accel_t">no data yet t</li>
               </ul>
             </section>
 
@@ -39,35 +39,45 @@
             
         </div>
         
-        <div id="currentTaskPage" data-role="page">
+        <div id="cameraPage" data-role="page">
             <div data-theme="a" data-role="header">
                 <h1>
-                    Current Task
+                    Camera Page
                 </h1>
             </div>
             
         </div>
         
-        
-        
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-        
-                <script src="test/vendor/json2.js"></script>
-  <!--<script src="test/vendor/jquery-1.7.1.js"></script>-->
-  <script src="test/vendor/underscore.js"></script>
-  <script src="backbone.js"></script>
-  <script src="backbone-localstorage.js"></script>
-        
+        <script src="test/vendor/json2.js"></script>
+        <!--<script src="test/vendor/jquery-1.7.1.js"></script>-->
+        <script src="test/vendor/underscore.js"></script>
+        <script src="backbone.js"></script>
+        <script src="backbone-localstorage.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-        <script src="tmLogic.js"></script>
         
-        <script>
-            $(function(){
-             //   startBackbone();
-            });
-            
-        </script>
-  
+    <script>
+        
+        //first we want to wait for PhoneGap to load
+        document.addEventListener("deviceready", loaded, false)
+        //PhoneGap is loaded
+        function loaded(){
+            $(".accelData").html("loaded");
+            navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+        }
+        //Get the current Acceleration data if Successful
+        function onSuccess(acceleration){
+            $("#accel_x").html("x:" + acceleration.x);
+            $("#accel_y").html("y:" + acceleration.y);
+            $("#accel_z").html("z:" + acceleration.z);
+            $("#accel_t").html("t:" + acceleration.timestamp);
+        }
+        // alert if there is an error
+        function onError(){
+            $(".accelData").html("error");
+        }
+    </script>
+          
     </body>
 </html>
