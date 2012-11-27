@@ -39,13 +39,13 @@ var app = {
         var completeElem = document.querySelector('#' + id + ' .complete');
         completeElem.className = completeElem.className.split('hide').join('');
         $("#tester").html("tester");
-                accel.startWatch();
+                acceler.startWatch();
 
     }
 };
 
-
-var accel = function(){
+var acceler = new Acceler();
+var Acceler = function(){
     var watchID;
     //wait for PhoneGap to load
     this.startWatch = function(){
