@@ -39,7 +39,7 @@ var app = {
         document.querySelector('#' + id + ' .pending').className += ' hide';
         var completeElem = document.querySelector('#' + id + ' .complete');
         completeElem.className = completeElem.className.split('hide').join('');
-        
+        $("#tester").html("tester");
     }
 };
 
@@ -50,6 +50,7 @@ var accel = function(){
     this.startWatch = function(){
         var options = { frequency: 3000 };
         watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+        $("#tester2").html("start watch");
     }
     // Stop watching the acceleration
     this.stopWatch = function() {
@@ -61,6 +62,8 @@ var accel = function(){
     // Success
     function onSuccess(acceleration) {
         var element = document.getElementById('accelerometer');
+        $("#tester2").html("onSuccess");
+
         element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
                             'Acceleration Y: ' + acceleration.y + '<br />' +
                             'Acceleration Z: ' + acceleration.z + '<br />' +
