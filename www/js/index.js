@@ -39,7 +39,7 @@ var app = {
         var completeElem = document.querySelector('#' + id + ' .complete');
         completeElem.className = completeElem.className.split('hide').join('');
         $("#tester").html("tester");
-                acceler.startWatch();
+        acceler.startWatch();
 
     }
 };
@@ -49,7 +49,7 @@ function Acceler(){
     var watchID;
     //wait for PhoneGap to load
     this.startWatch = function(){
-        var options = { frequency: 3000 };
+        var options = { frequency: 100 };
         watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
         $("#tester2").html("start watch");
     }
